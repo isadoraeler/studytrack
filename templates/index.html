@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estudos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>StudyTrack</h1>
+        <p>Controle de Estudos</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Resumo</h2>
+
+            <div>
+                <h3>Matérias</h3>
+                <p>{{ materias }}</p>
+            </div>
+
+            <div>
+                <h3>Horas Estudadas</h3>
+                <p>{{ horas }}h{{ minutos }}m</p>
+            </div>
+
+            <div>
+                <h3>Sessões</h3>
+                <p>{{ sessoes }}</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Minhas Matérias</h2>
+
+            <ul>
+                {% for estudo in estudos %}
+                    <li>
+                        <div class="informacoes-estudo">
+                            <strong>{{ estudo[1] }}</strong><br>
+                            Data: {{ estudo[2] }}<br>
+                            Duração: {{ estudo[3] }} minutos<br>
+                            Observações: {{ estudo[4] }}
+</div>
+
+                        <form method="POST" action="/excluir/{{ estudo[0] }}">
+                            <button type="submit" class="botao-excluir" title="Excluir sessão" onclick="return confirm('Tem certeza que deseja excluir esta sessão')">
+                            🗑️
+                            </button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Registrar Estudo</h2>
+
+            <form method="POST" action="/registrar">
+                <label>Matéria</label>
+                <select name="materia">
+                    <option>Estrutura de Dados</option>
+                    <option>Desenvolvimento Mobile</option>
+                    <option>DevOps Tools</option>
+                    <option>Networking Fundamentals</option>
+                    <option>Sistemas Operacionais</option>
+                    <option>Qualidade de Software</option>
+                    <option>Desenvolvimento Pessoal e Profissional</option>
+                </select>
+
+                <label>Data</label>
+                <input type="date" name="data">
+
+                <label>Duração (em minutos)</label>
+                <input type="number" name="duracao" placeholder="Ex: 60">
+
+                <label>Observações</label>
+                <textarea name="observacoes" placeholder="Anote alguma observação..."></textarea>
+
+                <button type="submit">+ Registrar Estudo</button>
+            </form>   
+        </section>
+    </main>
+</body>
+</html>

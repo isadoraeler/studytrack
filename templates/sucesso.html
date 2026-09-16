@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo Registrado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sucesso-container">
+
+        <div class="sucesso-card">
+
+            <h1>Estudo Registrado com Sucesso!</h1>
+
+            <p class="mensagem-sucesso">
+                Seu estudo foi recebido pelo sistema.
+            </p>
+
+            <div class="dados-estudo">
+                <p><strong>Matéria:</strong> {{ materia }}</p>
+                <p><strong>Data:</strong> {{ data }}</p>
+                <p><strong>Duração:</strong> {{ duracao }} minutos</p>
+                <p><strong>Observações:</strong> {{ observacoes }}</p>
+            </div>
+
+            <a href="/" class="botao-voltar">
+                Voltar para o StudyTrack
+            </a>
+        </div>
+    </div>
+</body>
+</html>
